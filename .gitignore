@@ -1,18 +1,115 @@
-# Ignoring dataset images and annotations ----------------------------------------------------------------------------------------------
+# Virtual Environments (CRITICAL - Never commit these!)
+anpr_env/
+venv/
+env/
+ENV/
+.venv/
+.env/
+
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows system files
+*.stackdump
+Desktop.ini
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+
+# Dataset images and annotations (original entries preserved)
 *.jpg
 *.jpeg
 *.xml
 *.txt
-
 !requirements.txt
 !anpr_logo.jpg
-# Ignoring test and output video
+
+# Video files (test and output videos)
 *.mp4
 *.avi
+*.mov
+*.mkv
+*.webm
 
+# Model checkpoints and temporary training files
+*.pth
+*.ckpt
+wandb/
+lightning_logs/
 
-# Ignoring YOLOv5 directory
+# Results and outputs (comment out if you want to track specific results)
+results/
+outputs/
+runs/detect/
+runs/val/
+# Keep training results for reference
+!runs/train/
+
+# YOLOv5 directory (third-party dependency - install separately)
 yolov5/
 
-yolov5/*
-!yolov5/runs/
+# Temporary Python files
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# GPU/CUDA cache
+.nv/
