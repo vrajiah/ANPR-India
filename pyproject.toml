@@ -1,0 +1,129 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anpr-system"
+version = "1.0.0"
+description = "Advanced Automatic Number Plate Recognition System for Indian License Plates"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "ANPR Development Team", email = "anpr@example.com"}
+]
+maintainers = [
+    {name = "ANPR Development Team", email = "anpr@example.com"}
+]
+keywords = ["anpr", "license-plate", "recognition", "computer-vision", "yolo", "ocr", "indian-plates"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "torch>=1.13.0",
+    "torchvision>=0.14.0",
+    "opencv-python>=4.5.0",
+    "paddlepaddle>=2.4.0,<4.0.0",
+    "paddleocr>=2.7.0",
+    "norfair>=2.1.0,<2.4.0",
+    "pandas>=1.5.0",
+    "numpy>=1.23.0",
+    "pillow>=7.1.0,<12.0.0",
+    "tqdm>=4.64.0",
+    "pyyaml>=6.0",
+    "watchdog>=2.1.0",
+]
+
+[project.optional-dependencies]
+web = [
+    "streamlit>=1.28.0",
+    "streamlit-option-menu>=0.3.6",
+    "plotly>=5.17.0",
+    "altair>=5.0.0",
+    "pillow>=7.1.0,<12.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+gpu = [
+    "torch>=1.13.0",
+    "torchvision>=0.14.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/ANPR-System"
+Documentation = "https://github.com/yourusername/ANPR-System#readme"
+Repository = "https://github.com/yourusername/ANPR-System"
+"Bug Tracker" = "https://github.com/yourusername/ANPR-System/issues"
+
+[project.scripts]
+anpr = "anpr_system.cli:main"
+anpr-web = "anpr_system.web_app:run_web_app"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["anpr_system*"]
+
+[tool.setuptools.package-data]
+anpr_system = [
+    "*.py",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
