@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  anpr-web:
+    build: .
+    container_name: anpr-system
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./test_data:/app/test_data
+      - ./results:/app/results
+      - ./runs:/app/runs
+    environment:
+      - PYTHONPATH=/app
+    command: streamlit run anpr_system/web_app.py --server.port=8501 --server.address=0.0.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import anpr_system; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  anpr-cli:
+    build: .
+    container_name: anpr-cli
+    volumes:
+      - ./test_data:/app/test_data
+      - ./results:/app/results
+      - ./runs:/app/runs
+    environment:
+      - PYTHONPATH=/app
+    command: anpr --help
+    profiles:
+      - cli
